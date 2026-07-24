@@ -1,0 +1,19 @@
+{
+  "title": "Billing & YooKassa Monitoring",
+  "tags": ["billing", "payments"],
+  "timezone": "browser",
+  "panels": [
+    {
+      "title": "Successful Payments Rate",
+      "type": "stat",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "sum(rate(billing_payments_success_total[5m]))"}]
+    },
+    {
+      "title": "Payment Errors",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "sum(rate(billing_payments_errors_total[5m]))"}]
+    }
+  ]
+}

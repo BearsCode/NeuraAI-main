@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: "NeuraAI"
+    orgId: 1
+    folder: ""
+    type: file
+    disableDeletion: true
+    editable: false
+    options:
+      path: /etc/grafana/provisioning/dashboards/definitions

@@ -1,0 +1,74 @@
+{
+  "title": "NeuraAI Overview",
+  "tags": ["neuraai", "production"],
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "title": "API Requests per second",
+      "type": "graph",
+      "gridPos": {"x": 0, "y": 0, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "rate(http_requests_total[1m])",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "title": "API p95 Latency",
+      "type": "graph",
+      "gridPos": {"x": 8, "y": 0, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+          "legendFormat": "p95"
+        }
+      ]
+    },
+    {
+      "title": "Error Rate",
+      "type": "graph",
+      "gridPos": {"x": 16, "y": 0, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{status=~\"5..\"}[5m]) / rate(http_requests_total[5m])",
+          "legendFormat": "error rate"
+        }
+      ]
+    },
+    {
+      "title": "Postgres Connections",
+      "type": "graph",
+      "gridPos": {"x": 0, "y": 8, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "pg_stat_activity_count{datname=~\"neuaraai\"}",
+          "legendFormat": "{{datname}}"
+        }
+      ]
+    },
+    {
+      "title": "Redis Memory Usage",
+      "type": "graph",
+      "gridPos": {"x": 8, "y": 8, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "redis_memory_used_bytes / redis_memory_max_bytes",
+          "legendFormat": "memory usage"
+        }
+      ]
+    },
+    {
+      "title": "Disk Space",
+      "type": "gauge",
+      "gridPos": {"x": 16, "y": 8, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}",
+          "legendFormat": "free"
+        }
+      ]
+    }
+  ]
+}

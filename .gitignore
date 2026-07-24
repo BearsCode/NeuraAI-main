@@ -1,0 +1,38 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+neuaraai.db
+storage/
+.env
+.env.local
+frontend/node_modules/
+frontend/.next/
+config/env/local/
+config/env/production/
+config/env/staging/
+config/env/override/
+node_modules/
+.next/
+.idea/
+.DS_Store
+*.tsbuildinfo
+
+# Documentation and planning
+TZ.md
+TZ.pdf
+way.md
+PROJECT_JOURNEY.md
+logic_plan.md
+*.txt
+*.pdf
+<<<<<<< HEAD
+audit_tasks_backend.md
+audit_tasks_infrastructure.md
+=======
+>>>>>>> origin/backend-scorb

@@ -1,0 +1,19 @@
+{
+  "title": "AI Agents Monitoring",
+  "tags": ["agents", "ai"],
+  "timezone": "browser",
+  "panels": [
+    {
+      "title": "Active Agents by Type",
+      "type": "stat",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "sum(rate(agent_tasks_total[5m])) by (agent_type)"}]
+    },
+    {
+      "title": "Agent Task Success Rate",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "sum(rate(agent_tasks_success_total[5m])) / sum(rate(agent_tasks_total[5m]))"}]
+    }
+  ]
+}

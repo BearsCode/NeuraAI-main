@@ -1,0 +1,19 @@
+{
+  "title": "Task Queue (Celery/DAG)",
+  "tags": ["celery", "queue"],
+  "timezone": "browser",
+  "panels": [
+    {
+      "title": "Pending Tasks",
+      "type": "stat",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "celery_queue_length"}]
+    },
+    {
+      "title": "Task Execution Time",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "rate(celery_task_runtime_sum[5m]) / rate(celery_task_runtime_count[5m])"}]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "External API Integrations",
+  "tags": ["api", "llm", "socials"],
+  "timezone": "browser",
+  "panels": [
+    {
+      "title": "API Request Rate",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "sum(rate(http_client_requests_total[5m])) by (provider)"}]
+    },
+    {
+      "title": "API Error Rate",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "sum(rate(http_client_requests_errors_total[5m])) by (provider)"}]
+    }
+  ]
+}

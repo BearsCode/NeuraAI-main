@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuaraai"
+version = "0.1.0"
+description = "NeuaraAI service scaffold"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3.28.2",
+    "aioboto3>=15.2.0",
+    "aiosqlite>=0.21.0",
+    "alembic>=1.16.1",
+    "arq>=0.26.3",
+    "asyncpg>=0.30.0",
+    "boto3>=1.40.0",
+    "celery[redis]>=5.4.0",
+    "cryptography>=45.0.4",
+    "email-validator>=2.3.0",
+    "google-auth>=2.0.0",
+    "openai>=1.68.0",
+    "fastapi>=0.136.3",
+    "httpx>=0.28.1",
+    "opentelemetry-api>=1.35.0",
+    "opentelemetry-exporter-otlp>=1.35.0",
+    "opentelemetry-instrumentation-fastapi>=0.56b0",
+    "opentelemetry-instrumentation-redis>=0.56b0",
+    "opentelemetry-instrumentation-sqlalchemy>=0.56b0",
+    "opentelemetry-sdk>=1.35.0",
+    "passlib[bcrypt]>=1.7.4",
+    "passlib[argon2]>=1.7.4",
+    "psycopg[binary]>=3.2.9",
+    "pydantic-settings>=2.14.1",
+    "pydantic>=2.13.4",
+    "prometheus-fastapi-instrumentator>=7.1.0",
+    "python-jose[cryptography]>=3.5.0",
+    "python-multipart>=0.0.20",
+    "redis>=5.0,<6.0",
+    "sqlalchemy[asyncio]>=2.0.43",
+    "structlog>=25.4.0",
+    "uvicorn>=0.49.0",
+    "pandas>=2.1.0",
+    "openpyxl>=3.1.2",
+    "pyyaml>=6.0.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["backend*"]
+
+[project.optional-dependencies]
+test = [
+    "fakeredis>=2.30.1",
+    "pytest>=8.4.0",
+    "pytest-asyncio>=1.0.0",
+    "testcontainers[postgres]>=4.10.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/automation/agents/capabilities/video.py" = ["E402"]
+"**/services/content_service.py" = ["E402"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+no_implicit_optional = false
+disable_error_code = [
+    "no-untyped-def",
+    "no-untyped-call",
+    "type-arg",
+    "arg-type",
+    "no-any-unimported",
+    "assignment",
+    "no-any-return",
+    "untyped-decorator",
+    "misc",
+    "import-untyped",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "backend.app.modules.*",
+    "backend.app.integrations.*",
+    "backend.app.services.*",
+    "backend.app.services_internal.*",
+    "backend.app.workers.*",
+    "backend.app.events.*",
+    "backend.app.bot.*",
+    "backend.app.db.*",
+    "backend.app.celery_tasks",
+    "backend.app.main",
+    "backend.app.api.*",
+    "backend.app.core.*",
+    "backend.app.schemas.*",
+]
+ignore_errors = true
